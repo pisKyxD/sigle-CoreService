@@ -8,6 +8,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -22,12 +24,16 @@ public class Establecimiento {
     private Long id;
 
     @Column(nullable = false)
+    @NotBlank(message = "El nombre es obligatorio")
     private String nombre;
 
+    @NotNull(message = "El tipo es obligatorio")
     @Enumerated(EnumType.STRING)
     private Tipo tipo;
 
+    @NotBlank(message = "La región es obligatoria")
     private String region;
+
     private String direccion;
     private String telefono;
     private Boolean activo = true;

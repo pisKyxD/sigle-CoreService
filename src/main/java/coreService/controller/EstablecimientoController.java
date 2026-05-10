@@ -2,6 +2,7 @@ package coreService.controller;
 
 import coreService.model.Establecimiento;
 import coreService.service.EstablecimientoService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,20 +27,17 @@ public class EstablecimientoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Establecimiento> obtener(
-            @PathVariable Long id) {
+    public ResponseEntity<Establecimiento> obtener(@PathVariable Long id) {
         return ResponseEntity.ok(service.obtenerPorId(id));
     }
 
     @PostMapping
-    public ResponseEntity<Establecimiento> crear(
-            @RequestBody Establecimiento e) {
+    public ResponseEntity<Establecimiento> crear(@Valid @RequestBody Establecimiento e) {
         return ResponseEntity.ok(service.guardar(e));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminar(
-            @PathVariable Long id) {
+    public ResponseEntity<Void> eliminar(@PathVariable Long id) {
         service.eliminar(id);
         return ResponseEntity.ok().build();
     }
