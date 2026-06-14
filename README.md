@@ -81,6 +81,21 @@ docker run -p 8080:10000 sigle-core-service
 
 **Borrado lógico:** los establecimientos no se eliminan de la BD, se marca `activo = false` para conservar el historial.
 
+## Tests
+
+```bash
+mvn test
+```
+
+Incluye tests unitarios (Mockito) para `AuthService`, `EstablecimientoService`, `DashboardService` y `NotificacionConfigService`, y tests de integración (`MockMvc`) para los 4 controllers correspondientes, usando H2 en memoria.
+
+### Tests con Docker
+
+```bash
+docker build -f Dockerfile.test -t core-tests .
+docker run --rm core-tests
+```
+
 ## Health
 
 ```
